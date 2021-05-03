@@ -6,7 +6,6 @@ var chalk = require('chalk');
 var TestRail = /** @class */ (function () {
     function TestRail(options) {
         this.options = options;
-        globalRunId = process.env.TESTRAIL_RUN_ID || null;
         this.base = "https://" + options.domain + "/index.php?/api/v2";
     }
 
