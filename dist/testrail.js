@@ -10,6 +10,7 @@ var TestRail = /** @class */ (function () {
     }
 
     TestRail.prototype.createRun = function (name, description) {
+        globalRunId = globalRunId || process.env.TESTRAIL_RUN_ID;
         if (globalRunId == null) {
             var _this = this;
             axios({
