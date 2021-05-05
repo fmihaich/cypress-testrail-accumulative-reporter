@@ -13,6 +13,15 @@ var TestRail = /** @class */ (function () {
         globalRunId = (process.env.TESTRAIL_RUN_ID) ? process.env.TESTRAIL_RUN_ID : globalRunId;
         if (globalRunId == null) {
             var _this = this;
+            let requestData = {
+                suite_id: this.options.suiteId,
+                name: name,
+                description: description,
+                include_all: true,
+            };
+            if (process.env.TESTRAIL_MILESTONE_ID) {
+                requestData.milestone_id = process.env.TESTRAIL_MILESTONE_ID;
+            };
             axios({
                 method: 'post',
                 url: this.base + "/add_run/" + this.options.projectId,
@@ -21,12 +30,7 @@ var TestRail = /** @class */ (function () {
                     username: this.options.username,
                     password: this.options.password,
                 },
-                data: JSON.stringify({
-                    suite_id: this.options.suiteId,
-                    name: name,
-                    description: description,
-                    include_all: true,
-                }),
+                data: JSON.stringify(requestData),
             })
                 .then(function (response) {
                     _this.runId = response.data.id;
