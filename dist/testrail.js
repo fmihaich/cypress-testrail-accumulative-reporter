@@ -11,6 +11,7 @@ var TestRail = /** @class */ (function () {
 
     TestRail.prototype.createRun = function (name, description) {
         globalRunId = (process.env.TESTRAIL_RUN_ID) ? process.env.TESTRAIL_RUN_ID : globalRunId;
+        console.log('**** globalRunId: ' + globalRunId + ' - env.TESTRAIL_RUN_ID:' + process.env.TESTRAIL_RUN_ID);
         if (globalRunId == null) {
             var _this = this;
             let requestData = {
